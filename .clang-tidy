@@ -1,0 +1,17 @@
+﻿Checks: >
+  bugprone-*,
+  cert-*,
+  clang-analyzer-*,
+  cppcoreguidelines-*,
+  performance-*,
+  modernize-*,
+  readability-*,
+  -modernize-use-trailing-return-type,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-pro-type-vararg,
+  -fuchsia-*
+WarningsAsErrors: 'bugprone-*,cert-*,clang-analyzer-*'
+HeaderFilterRegex: 'include/keycerthub/.*'
+FormatStyle: file

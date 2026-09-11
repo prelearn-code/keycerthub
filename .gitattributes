@@ -1,0 +1,50 @@
+# 换行符统一策略
+#
+# 本项目以 Linux 为唯一一等目标平台，仓库内一律使用 LF。
+# Windows 检出时 C++ 源码同样保持 LF，避免跨平台构建差异与 diff 噪声。
+* text=auto eol=lf
+
+# ---------------------------------------------------------------------------
+# 二进制文件：禁止换行转换
+# ---------------------------------------------------------------------------
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.der   binary
+*.p12   binary
+*.pfx   binary
+*.db    binary
+*.sqlite binary
+*.sqlite3 binary
+*.so    binary
+*.dll   binary
+*.a     binary
+*.o     binary
+
+# ---------------------------------------------------------------------------
+# Windows 脚本保留 CRLF
+# ---------------------------------------------------------------------------
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# ---------------------------------------------------------------------------
+# 发布归档时排除
+# ---------------------------------------------------------------------------
+/.github       export-ignore
+/tests         export-ignore
+/scripts       export-ignore
+/docs          export-ignore
+/openbao-reference export-ignore
+
+# ---------------------------------------------------------------------------
+# GitHub 语言统计调整
+# ---------------------------------------------------------------------------
+*.h      linguist-language=C++
+*.hpp    linguist-language=C++
+*.cpp    linguist-language=C++
+*.cmake  linguist-language=CMake
+CMakeLists.txt linguist-language=CMake

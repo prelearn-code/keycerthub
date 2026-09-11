@@ -1,0 +1,12 @@
+﻿TODO: 选择并粘贴许可证全文
+
+建议：Apache License 2.0
+理由：专利授权明确，适合密码类基础设施项目；源码头部已统一使用
+     SPDX-License-Identifier: Apache-2.0
+
+若选择其他许可证（MIT / BSD-3-Clause / AGPL-3.0），需同步修改：
+  1. 所有源文件头部的 SPDX 标识
+  2. README.md 的许可证章节
+  3. openbao-reference/ 之外的所有新文件
+
+注意：本目录不得直接复制 openbao-reference/ 中的 MPL-2.0 代码。

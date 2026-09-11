@@ -1,0 +1,33 @@
+﻿# 构建产物
+build/
+out/
+cmake-build-*/
+compile_commands.json
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 敏感文件：Seal Key、Master Key、私钥、Token 一律不得提交
+*.key
+*.pem
+seal.key
+master.key
+*.token
+config/*.local.yaml
+.env
+
+# 运行产物
+*.log
+audit.log
+data/
+*.db
+*.sqlite
+*.sqlite3
+
+# 测试与覆盖率
+Testing/
+*.gcda
+*.gcno
+coverage/

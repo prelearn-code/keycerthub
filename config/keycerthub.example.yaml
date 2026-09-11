@@ -1,0 +1,82 @@
+﻿# KeyCertHub 配置示例
+# 复制为 config/keycerthub.yaml 后按需修改
+# 注意：config/keycerthub.yaml 已在 .gitignore 中排除（可能含敏感项）
+
+server:
+  listen: "0.0.0.0:8443"
+  tls:
+    cert_file: "/etc/keycerthub/tls/server.crt"
+    key_file:  "/etc/keycerthub/tls/server.key"
+    client_ca_file: ""            # 配置后启用 mTLS
+  max_request_bytes: 4194304
+  graceful_shutdown_timeout: 30s
+
+seal:
+  mode: "dev-file"                # dev-file | mock-hsm | password | shamir | kms
+  seal_key_file: "/etc/keycerthub/seal.key"
+  shares: 5                       # shamir 模式
+  threshold: 3                    # shamir 模式
+  master_key_version: 1
+
+tenancy:
+  enabled: true
+  default_tenant: "root"
+  enforce_isolation: true
+
+provider:
+  default: "openssl"
+  available:
+    - name: "openssl"
+      type: "openssl"
+    - name: "gmssl"
+      type: "gmssl-client"
+      endpoint: "unix:///run/keycerthub/gmssl.sock"
+      timeout_ms: 3000
+    - name: "softhsm"
+      type: "pkcs11"
+      library: "/usr/lib/softhsm/libsofthsm2.so"
+      token_label: "keycerthub"
+      pool_size: 8
+    - name: "mock-hsm"
+      type: "mock-hsm"
+      pool_size: 8
+      timeout_ms: 2000
+
+storage:
+  driver: "sqlite"                # sqlite | postgresql
+  sqlite:
+    path: "/var/lib/keycerthub/keycerthub.db"
+  postgresql:
+    dsn: "postgresql://keycerthub@localhost:5432/keycerthub"
+    max_connections: 32
+
+rotation:
+  scheduler_enabled: true
+  scan_interval: 5m
+  default_interval_days: 90
+  default_max_encryptions: 2147483648   # 2^31，GCM 安全上限的一半
+
+audit:
+  enabled: true
+  backends: ["file"]
+  file:
+    path: "/var/log/keycerthub/audit.log"
+    rotate_bytes: 104857600
+    retain_files: 30
+  fail_closed: true
+  merkle_anchor_interval: 1h
+
+protocols:
+  kmip: { enabled: false, listen: "0.0.0.0:5696" }
+  est:  { enabled: false }
+  acme: { enabled: false }
+  ocsp: { enabled: false }
+
+logging:
+  level: "info"                   # trace | debug | info | warn | error
+  format: "json"
+  redact_sensitive: true
+
+metrics:
+  enabled: true
+  listen: "0.0.0.0:9090"

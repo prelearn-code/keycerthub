@@ -1,0 +1,18 @@
+﻿{
+  "name": "keycerthub",
+  "version": "0.0.1",
+  "description": "Enterprise key and certificate management system",
+  "dependencies": [
+    "openssl",
+    "nlohmann-json",
+    "spdlog",
+    "yaml-cpp",
+    "sqlite3",
+    "libpq",
+    { "name": "drogon", "platform": "!windows" },
+    { "name": "gtest", "platform": "!windows" },
+    { "name": "benchmark", "platform": "!windows" }
+  ],
+  "builtin-baseline": "TODO-pin-baseline-commit",
+  "overrides": []
+}

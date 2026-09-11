@@ -1,0 +1,73 @@
+﻿{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 24, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    },
+    {
+      "name": "debug",
+      "inherits": "base",
+      "displayName": "Debug",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug", "KEYCERTHUB_BUILD_TESTS": "ON" }
+    },
+    {
+      "name": "release",
+      "inherits": "base",
+      "displayName": "Release",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Release", "KEYCERTHUB_BUILD_TESTS": "ON" }
+    },
+    {
+      "name": "asan",
+      "inherits": "base",
+      "displayName": "Debug + AddressSanitizer",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "KEYCERTHUB_ENABLE_ASAN": "ON",
+        "KEYCERTHUB_ENABLE_UBSAN": "ON",
+        "KEYCERTHUB_BUILD_TESTS": "ON"
+      }
+    },
+    {
+      "name": "tsan",
+      "inherits": "base",
+      "displayName": "Debug + ThreadSanitizer",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "KEYCERTHUB_ENABLE_TSAN": "ON",
+        "KEYCERTHUB_BUILD_TESTS": "ON"
+      }
+    },
+    {
+      "name": "bench",
+      "inherits": "release",
+      "displayName": "Release + Benchmarks",
+      "cacheVariables": { "KEYCERTHUB_BUILD_BENCH": "ON" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "debug",   "configurePreset": "debug" },
+    { "name": "release", "configurePreset": "release" },
+    { "name": "asan",    "configurePreset": "asan" },
+    { "name": "tsan",    "configurePreset": "tsan" },
+    { "name": "bench",   "configurePreset": "bench" }
+  ],
+  "testPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug",
+      "output": { "outputOnFailure": true }
+    },
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "output": { "outputOnFailure": true }
+    }
+  ]
+}
