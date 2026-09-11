@@ -38,7 +38,6 @@
 /tests         export-ignore
 /scripts       export-ignore
 /docs          export-ignore
-/openbao-reference export-ignore
 
 # ---------------------------------------------------------------------------
 # GitHub 语言统计调整

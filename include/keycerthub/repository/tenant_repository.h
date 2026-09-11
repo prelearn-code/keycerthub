@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 // 租户仓储接口
-// 设计依据：密钥与证书管理系统总体设计与实施路线图.md
+// 设计依据：docs/00-总体设计与实施路线图.md
 // 实现阶段：阶段 4
 
 #pragma once

@@ -213,7 +213,7 @@ Per-request DEK         仅以 Wrapped 形式随业务密文保存
 
 | 文档 | 内容 |
 |---|---|
-| [总体设计与实施路线图](../密钥与证书管理系统总体设计与实施路线图.md) | **主设计文档**（210 项功能矩阵） |
+| [总体设计与实施路线图](docs/00-总体设计与实施路线图.md) | **主设计文档**（210 项功能矩阵） |
 | [docs/architecture.md](docs/architecture.md) | 系统架构 |
 | [docs/threat-model.md](docs/threat-model.md) | 威胁模型 |
 | [docs/crypto-design.md](docs/crypto-design.md) | 密码设计 |
@@ -236,7 +236,15 @@ Per-request DEK         仅以 Wrapped 形式随业务密文保存
 
 ## 参考资料
 
-- `../openbao-reference/` — OpenBao 关键实现摘录（MPL-2.0，仅作设计对照，**不得复制进本仓库源码树**）
+本项目的设计参考了以下上游项目。为保持许可证清晰，**上游源码不纳入本仓库**：
+
+| 项目 | 用途 | 许可证 | 上游 |
+|---|---|---|---|
+| OpenSSL | 国际算法主 Provider | Apache-2.0 | https://github.com/openssl/openssl |
+| GmSSL | 国密算法 Provider | Apache-2.0 | https://github.com/guanzhi/GmSSL |
+| OpenBao | 密钥层级、Seal、Transit 策略的架构参考 | MPL-2.0 | https://github.com/openbao/openbao |
+
+详细的参考点映射与许可证说明见 [`docs/references.md`](docs/references.md)。
 
 ---
 
